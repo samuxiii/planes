@@ -5,6 +5,13 @@
 #include <QKeyEvent>
 #include <QDebug>
 
+Player::Player(QGraphicsItem *parent)
+    :QGraphicsRectItem(parent)
+{
+    bulletSound = new QMediaPlayer();
+    bulletSound->setMedia(QUrl("qrc:/../planes/Planes/sounds/shoot.wav"));
+}
+
 void Player::keyPressEvent(QKeyEvent *event)
 {
     qDebug() << "Key pressed";
@@ -28,6 +35,12 @@ void Player::keyPressEvent(QKeyEvent *event)
         Bullet *bullet = new Bullet();
         bullet->setPos(x() + (this->rect().width()/2 - bullet->rect().width()/2),y());
         scene()->addItem(bullet);
+        //sound
+        if (bulletSound->state() == QMediaPlayer::PlayingState)
+        {
+            bulletSound->setPosition(0); //rewind
+        }
+        else bulletSound->play(); //it should be in QMediaPlayer::StoppedState
     }
     else if (event->key() == Qt::Key_Escape)
     {

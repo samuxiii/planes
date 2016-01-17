@@ -2,6 +2,7 @@
 #include <QGraphicsTextItem>
 #include <QTimer>
 #include <QFont>
+#include <QMediaPlayer>
 
 Game::Game (QWidget *parent)
 {
@@ -38,6 +39,11 @@ Game::Game (QWidget *parent)
     QTimer *timer = new QTimer();
     timer->start(2000); //milliseconds
     QObject::connect(timer, SIGNAL(timeout()), enemies, SLOT(spawn()));
+
+    //sounds
+    QMediaPlayer *mplayer = new QMediaPlayer();
+    mplayer->setMedia(QUrl("qrc:/../planes/Planes/sounds/background.mp3"));
+    mplayer->play();
 
     show();
 }

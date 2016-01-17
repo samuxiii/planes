@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>../../planes/Planes/sounds/background.mp3</file>
+        <file>../../planes/Planes/sounds/shoot.wav</file>
+    </qresource>
+</RCC>
