@@ -3,6 +3,9 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <stdlib.h>
+#include "Game.h"
+
+extern Game *game;
 
 Enemy::Enemy()
 {
@@ -29,8 +32,12 @@ void Enemy::start()
 void Enemy::move()
 {
     setPos(x(), y()+5);
+
     if (pos().y() > scene()->height())
     {
+        //decrease health if enemy touch the ground
+        game->health->decrease();
+
         scene()->removeItem(this);
         delete this;
         qDebug() << "Enemy out of scene. Deleted.";

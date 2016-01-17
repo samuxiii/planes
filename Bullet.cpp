@@ -4,6 +4,9 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <QList>
+#include "Game.h"
+
+extern Game *game;
 
 Bullet::Bullet()
 {
@@ -24,6 +27,8 @@ void Bullet::move()
     {
         if (typeid(*enemy) == typeid(Enemy))
         {
+            game->score->increase();
+            //clean up
             scene()->removeItem(enemy);
             scene()->removeItem(this);
             delete enemy;

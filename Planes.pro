@@ -17,13 +17,17 @@ SOURCES += main.cpp \
     Enemy.cpp \
     Player.cpp \
     Score.cpp \
-    Enemies.cpp
+    Enemies.cpp \
+    Game.cpp \
+    ../../planes/Planes/Health.cpp
 
 HEADERS  += \
     ../../planes/Planes/Bullet.h \
     Enemy.h \
     Player.h \
     Score.h \
-    Enemies.h
+    Enemies.h \
+    Game.h \
+    ../../planes/Planes/Health.h
 
 DISTFILES +=
