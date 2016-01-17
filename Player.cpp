@@ -26,7 +26,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         qDebug() << "Bullet shooted";
         Bullet *bullet = new Bullet();
-        bullet->setPos(x() + this->rect().width()/2,y());
+        bullet->setPos(x() + (this->rect().width()/2 - bullet->rect().width()/2),y());
         scene()->addItem(bullet);
     }
     else if (event->key() == Qt::Key_Escape)
