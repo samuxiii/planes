@@ -1,3 +1,3 @@
-# planes
+# Planes
 
 Simple game about planes
