@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Planes
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp \
     ../../planes/Planes/Bullet.cpp \
@@ -33,4 +34,4 @@ HEADERS  += \
 DISTFILES +=
 
 RESOURCES += \
-    Resources.qrc
+    ../../planes/Planes/Resources.qrc

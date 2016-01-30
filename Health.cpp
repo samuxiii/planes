@@ -1,12 +1,12 @@
 #include "Health.h"
 #include <QFont>
 
-Health::Health(QGraphicsItem *parent)
+Health::Health()
 {
     health = 3;
 
-    setDefaultTextColor(Qt::red);
-    setFont(QFont("times",16));
+    setDefaultTextColor(Qt::white);
+    setFont(QFont("times",18));
     setPos(x(),y()+25);
 
     print();

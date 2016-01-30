@@ -1,13 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QMediaPlayer>
 
-class Player: public QGraphicsRectItem
+class Player: public QGraphicsPixmapItem
 {
 public:
-    Player (QGraphicsItem *parent = 0);
+    Player ();
+    void initPosition(QGraphicsScene *scene);
     void keyPressEvent(QKeyEvent *event);
 
 private:

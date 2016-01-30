@@ -1,15 +1,30 @@
 #include <Player.h>
 #include <Bullet.h>
 #include <Enemy.h>
+#include <Game.h>
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QDebug>
 
-Player::Player(QGraphicsItem *parent)
-    :QGraphicsRectItem(parent)
+extern Game *game;
+
+Player::Player()
+    :QGraphicsPixmapItem()
 {
+    setPixmap(QPixmap(":/images/player.png"));
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
+
+    //sound bullet
     bulletSound = new QMediaPlayer();
-    bulletSound->setMedia(QUrl("qrc:/../planes/Planes/sounds/shoot.wav"));
+    bulletSound->setMedia(QUrl("qrc:/sounds/shoot.wav"));
+}
+
+void Player::initPosition(QGraphicsScene *scene)
+{
+    /* scene pointer needed, the scene could not be constructed yet */
+    setPos(scene->width()/2 - this->pixmap().width()/2,
+           scene->height() - this->pixmap().height());
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -26,15 +41,18 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Right)
     {
         //right limit
-        if (pos().x() + this->rect().width() < scene()->width())
+        if (pos().x() + this->pixmap().width() < scene()->width())
+        {
             setPos(x()+movement, y());
+        }
     }
     else if (event->key() == Qt::Key_Space)
     {
         qDebug() << "Bullet shooted";
         Bullet *bullet = new Bullet();
-        bullet->setPos(x() + (this->rect().width()/2 - bullet->rect().width()/2),y());
+        bullet->setPos(x() + (this->pixmap().width()/2 - bullet->pixmap().width()/2),y());
         scene()->addItem(bullet);
+
         //sound
         if (bulletSound->state() == QMediaPlayer::PlayingState)
         {

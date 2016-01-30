@@ -8,8 +8,10 @@
 extern Game *game;
 
 Enemy::Enemy()
+    :QObject(),
+     QGraphicsPixmapItem()
 {
-    setRect(0,0,100,100);
+    setPixmap(QPixmap(":/images/enemy.png"));
 }
 
 void Enemy::start()
@@ -20,7 +22,7 @@ void Enemy::start()
      *   (it has to calculate with the "scene_width - enemy_width")
      */
     //TODO: improve the random
-    int randomX = rand() % (int)(scene()->width() - this->rect().width());
+    int randomX = rand() % (int)(scene()->width() - this->pixmap().width());
     setPos(randomX, 0);
 
     QTimer *timer = new QTimer();

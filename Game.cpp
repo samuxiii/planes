@@ -3,8 +3,10 @@
 #include <QTimer>
 #include <QFont>
 #include <QMediaPlayer>
+#include <QBrush>
+#include <QImage>
 
-Game::Game (QWidget *parent)
+Game::Game ()
 {
     //window constants
     const int width = 800;
@@ -18,6 +20,9 @@ Game::Game (QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(scene->width(), scene->height());
 
+    //background
+    setBackgroundBrush(QBrush(QImage(":/images/grass.png")));
+
     //score
     score = new Score();
     scene->addItem(score);
@@ -28,10 +33,7 @@ Game::Game (QWidget *parent)
 
     //player
     player = new Player();
-    player->setRect(0,0, 100, 100);
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
-    player->setPos(this->width()/2, this->height() - player->rect().height());
+    player->initPosition(scene);
     scene->addItem(player);
 
     //spawn enemies
@@ -42,7 +44,7 @@ Game::Game (QWidget *parent)
 
     //sounds
     QMediaPlayer *mplayer = new QMediaPlayer();
-    mplayer->setMedia(QUrl("qrc:/../planes/Planes/sounds/background.mp3"));
+    mplayer->setMedia(QUrl("qrc:/sounds/background.mp3"));
     mplayer->play();
 
     show();

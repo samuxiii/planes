@@ -9,8 +9,10 @@
 extern Game *game;
 
 Bullet::Bullet()
+    :QObject(),
+     QGraphicsPixmapItem()
 {
-    setRect(0,0,10,50);
+    setPixmap(QPixmap(":/images/rocket.png"));
 
     QTimer *timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(move()));
