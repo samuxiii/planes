@@ -2,6 +2,7 @@
 #include "Enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
+#include <QMediaPlayer>
 #include <QDebug>
 #include <QList>
 #include "Game.h"
@@ -18,6 +19,17 @@ Bullet::Bullet()
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 
     timer->start(50);
+
+    //sound bullet
+    QMediaPlayer *bulletSound = new QMediaPlayer();
+    bulletSound->setMedia(QUrl("qrc:/sounds/shoot.wav"));
+
+    //sound
+    if (bulletSound->state() == QMediaPlayer::PlayingState)
+    {
+        bulletSound->setPosition(0); //rewind
+    }
+    else bulletSound->play(); //it should be in QMediaPlayer::StoppedState
 }
 
 void Bullet::move()

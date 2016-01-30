@@ -14,10 +14,6 @@ Player::Player()
     setPixmap(QPixmap(":/images/player.png"));
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
-
-    //sound bullet
-    bulletSound = new QMediaPlayer();
-    bulletSound->setMedia(QUrl("qrc:/sounds/shoot.wav"));
 }
 
 void Player::initPosition(QGraphicsScene *scene)
@@ -50,15 +46,9 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         qDebug() << "Bullet shooted";
         Bullet *bullet = new Bullet();
-        bullet->setPos(x() + (this->pixmap().width()/2 - bullet->pixmap().width()/2),y());
+        //where the bullet comes out
+        bullet->setPos(x() + (this->pixmap().width()/2 - bullet->pixmap().width()/2), y());
         scene()->addItem(bullet);
-
-        //sound
-        if (bulletSound->state() == QMediaPlayer::PlayingState)
-        {
-            bulletSound->setPosition(0); //rewind
-        }
-        else bulletSound->play(); //it should be in QMediaPlayer::StoppedState
     }
     else if (event->key() == Qt::Key_Escape)
     {
