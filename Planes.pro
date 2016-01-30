@@ -8,30 +8,33 @@ QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Planes
+TARGET = planes
 TEMPLATE = app
 
 CONFIG += c++11
+CONFIG += release
 
-SOURCES += main.cpp \
-    ../../planes/Planes/Bullet.cpp \
-    Enemy.cpp \
-    Player.cpp \
-    Score.cpp \
-    Enemies.cpp \
-    Game.cpp \
-    ../../planes/Planes/Health.cpp
+SOURCES += src/main.cpp \
+    src/Bullet.cpp \
+    src/Enemies.cpp \
+    src/Enemy.cpp \
+    src/Game.cpp \
+    src/Health.cpp \
+    src/Player.cpp \
+    src/Score.cpp
+
+INCLUDEPATH += include/
 
 HEADERS  += \
-    ../../planes/Planes/Bullet.h \
-    Enemy.h \
-    Player.h \
-    Score.h \
-    Enemies.h \
-    Game.h \
-    ../../planes/Planes/Health.h
+    include/Bullet.h \
+    include/Enemies.h \
+    include/Enemy.h \
+    include/Game.h \
+    include/Health.h \
+    include/Player.h \
+    include/Score.h
 
 DISTFILES +=
 
 RESOURCES += \
-    ../../planes/Planes/Resources.qrc
+    resources.qrc
