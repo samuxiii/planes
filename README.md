@@ -6,7 +6,7 @@ Simple game about war planes using Qt5 libraries
 ```
 cd planes
 mkdir build
-qmake
+qmake ..
 make
 ```
 ## How to execute
@@ -14,5 +14,10 @@ make
 cd planes/release
 ./planes
 ```
+## Basic controls
+* **Arrow keys** to move left and right
+* **Space key** to shoot a missile
+* **Esc key** to exit
+
 ## Dependencies
 * Qt5: core widgets multimedia
