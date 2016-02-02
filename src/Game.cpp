@@ -23,6 +23,9 @@ Game::Game ()
     //background
     setBackgroundBrush(QBrush(QImage(":/images/grass.png")));
 
+    //notifier
+    notifier = new Notifier();
+
     //score
     score = new Score();
     scene->addItem(score);
@@ -38,9 +41,6 @@ Game::Game ()
 
     //spawn enemies
     enemies = new Enemies(scene);
-    QTimer *timer = new QTimer();
-    timer->start(2000); //milliseconds
-    QObject::connect(timer, SIGNAL(timeout()), enemies, SLOT(spawn()));
 
     //sounds
     QMediaPlayer *mplayer = new QMediaPlayer();
