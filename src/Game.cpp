@@ -23,9 +23,29 @@ Game::Game ()
     //background
     setBackgroundBrush(QBrush(QImage(":/images/grass.png")));
 
-    //notifier
+    //sounds
+    QMediaPlayer *mplayer = new QMediaPlayer();
+    mplayer->setMedia(QUrl("qrc:/sounds/background.mp3"));
+    mplayer->play();
+
+    //game states notifier
     notifier = new Notifier();
 
+    show();
+}
+
+Game::~Game()
+{
+   delete scene;
+   delete player;
+   delete enemies;
+   delete score;
+   delete health;
+   delete notifier;
+}
+
+void Game::start()
+{
     //score
     score = new Score();
     scene->addItem(score);
@@ -41,11 +61,4 @@ Game::Game ()
 
     //spawn enemies
     enemies = new Enemies(scene);
-
-    //sounds
-    QMediaPlayer *mplayer = new QMediaPlayer();
-    mplayer->setMedia(QUrl("qrc:/sounds/background.mp3"));
-    mplayer->play();
-
-    show();
 }

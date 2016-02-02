@@ -1,9 +1,9 @@
+#include "Game.h"
 #include "Enemy.h"
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
 #include <stdlib.h>
-#include "Game.h"
 
 extern Game *game;
 
@@ -12,7 +12,6 @@ Enemy::Enemy()
     QGraphicsPixmapItem()
 {
    setPixmap(QPixmap(":/images/enemy.png"));
-   //register
    game->notifier->registerSubscriber(*this);
 }
 
@@ -51,8 +50,6 @@ void Enemy::move()
 
          if (game->health->getHealth() <= 0)
          {
-            delete game->player;
-            delete game->enemies;
             game->notifier->notify(Notification::GAMEOVER);
          }
          else
@@ -69,7 +66,6 @@ void Enemy::update(Notification notif)
 {
    if (notif == Notification::GAMEOVER)
    {
-      qDebug() << "Notification GAMEOVER";
       delete this;
    }
 }

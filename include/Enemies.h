@@ -3,18 +3,21 @@
 
 #include <QObject>
 #include <QGraphicsScene>
+#include "Subscriber.h"
 
-class Enemies: public QObject
+class Enemies: public QObject, public Subscriber
 {
     Q_OBJECT
-private:
-    QGraphicsScene *scene;
-
 public:
     Enemies(QGraphicsScene *scene);
+    ~Enemies();
+    void update(Notification notif);
 
 public slots:
     void spawn();
+
+private:
+    QGraphicsScene *scene;
 };
 
 

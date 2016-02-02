@@ -20,6 +20,7 @@ SOURCES += src/main.cpp \
     src/Enemy.cpp \
     src/Game.cpp \
     src/Health.cpp \
+    src/Notifier.cpp \
     src/Player.cpp \
     src/Score.cpp
 
@@ -29,8 +30,11 @@ HEADERS  += \
     include/Enemy.h \
     include/Game.h \
     include/Health.h \
+    include/Notification.h \
+    include/Notifier.h \
     include/Player.h \
-    include/Score.h
+    include/Score.h \
+    include/Subscriber.h
 
 INCLUDEPATH += include/
 

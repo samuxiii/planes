@@ -12,7 +12,9 @@
 class Game: public QGraphicsView
 {
 public:
-    Game ();
+    Game();
+    ~Game();
+    void start();
 
     QGraphicsScene *scene;
     Player *player;
