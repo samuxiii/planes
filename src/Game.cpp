@@ -36,12 +36,12 @@ Game::Game ()
 
 Game::~Game()
 {
-   delete scene;
-   delete player;
-   delete enemies;
-   delete score;
-   delete health;
-   delete notifier;
+    delete scene;
+    delete player;
+    delete enemies;
+    delete score;
+    delete health;
+    delete notifier;
 }
 
 void Game::start()

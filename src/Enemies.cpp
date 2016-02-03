@@ -16,7 +16,7 @@ Enemies::Enemies(QGraphicsScene *scene)
 
 Enemies::~Enemies()
 {
-   game->notifier->unregisterSubscriber(*this);
+    game->notifier->unregisterSubscriber(*this);
 }
 
 void Enemies::spawn()
@@ -28,8 +28,8 @@ void Enemies::spawn()
 
 void Enemies::update(Notification notif)
 {
-   if (notif == Notification::GAMEOVER)
-   {
-      delete this;
-   }
+    if (notif == Notification::GAMEOVER)
+    {
+        delete this;
+    }
 }

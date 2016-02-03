@@ -34,7 +34,8 @@ void Player::keyPressEvent(QKeyEvent *event)
     //qDebug() << "Key pressed";
     int movement = 20;
 
-    if (event->key() == Qt::Key_Left){
+    if (event->key() == Qt::Key_Left)
+    {
         //left limit
         if (pos().x() > 0)
             setPos(x()-movement, y());
@@ -63,8 +64,8 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::update(Notification notif)
 {
-   if (notif == Notification::GAMEOVER)
-   {
-      delete this;
-   }
+    if (notif == Notification::GAMEOVER)
+    {
+        delete this;
+    }
 }

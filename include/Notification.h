@@ -3,8 +3,8 @@
 
 enum Notification
 {
-  START,
-  GAMEOVER
+    START,
+    GAMEOVER
 };
 
 #endif // NOTIFICATION_H

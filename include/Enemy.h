@@ -7,8 +7,8 @@
 #include "Subscriber.h"
 
 class Enemy: public QObject,
-             public QGraphicsPixmapItem,
-             public Subscriber
+    public QGraphicsPixmapItem,
+    public Subscriber
 {
     Q_OBJECT
 public:
