@@ -21,3 +21,6 @@ cd planes/release
 
 ## Dependencies
 * Qt5: core widgets multimedia
+```
+sudo apt-get install qt5-qmake qt5-default libqt5core5a libqt5widgets5 libqt5multimedia5 
+```
