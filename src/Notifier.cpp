@@ -4,11 +4,14 @@
 #include <iostream>
 
 Notifier::Notifier()
+    :registerEnabled(true)
 {}
 
 void Notifier::registerSubscriber(Subscriber &subs)
 {
-    subscribers.push_back(subs);
+    if (!registerEnabled) return;
+
+    subscribers.push_front(subs);
     std::cout << "Registered: " << std::addressof(subs) << std::endl;
 
     printSubscribers();
@@ -20,8 +23,7 @@ void Notifier::unregisterSubscriber(Subscriber &subs)
 
     if (elem != subscribers.end())
     {
-        //subscribers.erase(elem);
-        eraseSubsQueue.push(elem);
+        subscribers.erase(elem);
         std::cout << "Unregistered: " << std::addressof(subs) << std::endl;
     }
 
@@ -30,30 +32,18 @@ void Notifier::unregisterSubscriber(Subscriber &subs)
 
 void Notifier::notify(Notification notif)
 {
-    std::cout << "Clean up Subscribers list" << std::endl;
-    //before notify: clear unregister subscribers
-    while(!eraseSubsQueue.empty())
-    {
-        subscribers.erase(eraseSubsQueue.front());
-        eraseSubsQueue.pop();
-    }
+    if (notif == Notification::GAMEOVER) registerEnabled = false;
 
     std::cout << "List to notify: ";
     printSubscribers();
 
-    for (auto &sub : subscribers)
+    //getting a copy of the current registered subscribers
+    auto currentSubs = subscribers;
+
+    for (auto& sub : currentSubs)
     {
-        std::cout << "------" << std::endl;
         std::cout << "Notifying: " << std::addressof(sub.get()) << std::endl;
         sub.get().update(notif);
-    }
-
-    std::cout << "Clean up Subscribers list" << std::endl;
-    //after notify: clear unregister subscribers
-    while(!eraseSubsQueue.empty())
-    {
-        subscribers.erase(eraseSubsQueue.front());
-        eraseSubsQueue.pop();
     }
 
 }

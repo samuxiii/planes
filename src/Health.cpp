@@ -1,5 +1,9 @@
+#include "Game.h"
 #include "Health.h"
+#include "Notification.h"
 #include <QFont>
+
+extern Game *game;
 
 Health::Health()
 {
@@ -19,8 +23,15 @@ void Health::print ()
 
 void Health::decrease()
 {
-    health--;
-    print();
+    if (health > 0)
+    {
+        health--;
+        print();
+        if (health == 0)
+        {
+            game->stop();
+        }
+    }
 }
 
 int Health::getHealth()

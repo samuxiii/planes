@@ -15,6 +15,7 @@ public:
     Game();
     ~Game();
     void start();
+    void stop();
 
     QGraphicsScene *scene;
     Player *player;

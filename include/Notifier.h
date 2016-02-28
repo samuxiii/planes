@@ -22,8 +22,7 @@ private:
     typedef std::reference_wrapper<Subscriber> refSubscriber;
 
     std::list<refSubscriber> subscribers;
-    //queue<position> in vector<Subscriber> to remove
-    std::queue<std::list<refSubscriber>::iterator> eraseSubsQueue;
+    bool registerEnabled;
 
     void printSubscribers();
 };

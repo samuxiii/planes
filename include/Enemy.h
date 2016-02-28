@@ -19,6 +19,9 @@ public:
 
 public slots:
     void move ();
+
+private:
+    QTimer* timer;
 };
 
 #endif // ENEMY_H

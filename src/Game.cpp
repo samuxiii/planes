@@ -61,4 +61,11 @@ void Game::start()
 
     //spawn enemies
     enemies = new Enemies(scene);
+    enemies->start();
+}
+
+void Game::stop()
+{
+    enemies->stop();
+    notifier->notify(Notification::GAMEOVER);
 }

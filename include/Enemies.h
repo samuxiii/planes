@@ -12,12 +12,16 @@ public:
     Enemies(QGraphicsScene *scene);
     ~Enemies();
     void update(Notification notif);
+    void start();
+    void stop();
 
 public slots:
     void spawn();
 
 private:
     QGraphicsScene *scene;
+    QTimer* timer;
+    int spawnTime; //milliseconds
 };
 
 

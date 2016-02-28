@@ -12,11 +12,13 @@ Enemy::Enemy()
      QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/enemy.png"));
+    timer = new QTimer();
     game->notifier->registerSubscriber(*this);
 }
 
 Enemy::~Enemy()
 {
+    delete timer;
     game->notifier->unregisterSubscriber(*this);
 }
 
@@ -24,16 +26,14 @@ void Enemy::start()
 {
     /* create in random position
      * - It's needed a random number -> rand()
-     * - Pass the big obtained random to a value inside the scene
-     *   (it has to calculate with the "scene_width - enemy_width")
+     * - Pass the obtained big random to a value inside the scene
+     *   (calculate as "scene_width - enemy_width")
      */
     //TODO: improve the random
     int randomX = rand() % (int)(scene()->width() - this->pixmap().width());
     setPos(randomX, 0);
 
-    QTimer *timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-
     timer->start(50);
 }
 
@@ -47,15 +47,11 @@ void Enemy::move()
         {
             //decrease health if enemy touch the ground
             game->health->decrease();
+            qDebug() << "Enemy out of scene. Deleted.";
 
-            if (game->health->getHealth() <= 0)
-            {
-                game->notifier->notify(Notification::GAMEOVER);
-            }
-            else
+            if (game->health->getHealth() > 0) //it's not a game over
             {
                 scene()->removeItem(this);
-                qDebug() << "Enemy out of scene. Deleted.";
                 delete this;
             }
         }
@@ -66,6 +62,7 @@ void Enemy::update(Notification notif)
 {
     if (notif == Notification::GAMEOVER)
     {
+        scene()->removeItem(this);
         delete this;
     }
 }
