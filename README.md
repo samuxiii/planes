@@ -1,6 +1,6 @@
 # Planes
 
-Simple game about war planes using Qt5 libraries
+Simple war game of planes using Qt5 libraries
 
 ## How to compile
 ```
@@ -16,7 +16,7 @@ cd planes/release
 ```
 ## Basic controls
 * **Arrow keys** to move left and right
-* **Space key** to shoot a missile
+* **Space key** to fire a missile
 * **Esc key** to exit
 
 ## Dependencies
